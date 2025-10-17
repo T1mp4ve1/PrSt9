@@ -1,8 +1,14 @@
 export const FETCH_MUSIC_SUCCESS = "FETCH_MUSIC_SUCCESS";
+export const SELECTED_TRACK = "SELECTED_TRACK";
 
-export const fetchMusicSucces = (artistName, tracks) => ({
+export const fetchMusicSuccess = (artistName, tracks) => ({
   type: FETCH_MUSIC_SUCCESS,
   payload: { artistName, tracks },
+});
+
+export const selectedTrack = (track) => ({
+  type: SELECTED_TRACK,
+  payload: track,
 });
 
 export const fetchMusic = (artistName) => {
@@ -13,7 +19,7 @@ export const fetchMusic = (artistName) => {
       );
       if (response.ok) {
         let cnvrtData = await response.json();
-        dispatch(fetchMusicSucces(artistName, cnvrtData.data));
+        dispatch(fetchMusicSuccess(artistName, cnvrtData.data));
       } else {
         throw new Error("Error in fetching songs");
       }

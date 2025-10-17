@@ -1,11 +1,51 @@
+import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
 const PlayerCustom = () => {
+  const currentTrack = useSelector(
+    (state) => state.currentTrackReducer.currentTrack
+  );
+
   return (
     <>
-      <div className="container-fluid fixed-bottom bg-container pt-1">
-        <div className="row h-100">
-          <div className="col-lg-10 offset-lg-2">
-            <div className="row h-100 flex-column justify-content-center align-items-center">
-              <div className="col-6 col-md-4 playerControls">
+      <Container fluid className="fixed-bottom bg-container pt-2">
+        <Row>
+          <Col xs={2}></Col>
+          <Col
+            xs={2}
+            className="d-flex justify-content-center align-items-center text-light"
+          >
+            {currentTrack ? (
+              <>
+                <img
+                  src={currentTrack.album.cover_small}
+                  alt={currentTrack.title}
+                  className="me-3"
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <div>
+                  <p className="mb-0 fw-bold">{currentTrack.title}</p>
+                  <small>{currentTrack.artist.name}</small>
+                </div>
+              </>
+            ) : (
+              <>
+                <img
+                  src="{currentTrack.album.cover_small}"
+                  alt="{currentTrack.title}"
+                  className="me-3"
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <div>
+                  <p className="mb-0 fw-bold">track title</p>
+                  <small>artist name</small>
+                </div>
+              </>
+            )}
+          </Col>
+          <Col lg={8}>
+            <Row className="justify-content-start align-items-center">
+              <Col xs={4} md={6} className="playerControls">
                 <div className="d-flex">
                   <a href="#">
                     <img src="assets/playerbuttons/shuffle.png" alt="shuffle" />
@@ -26,11 +66,11 @@ const PlayerCustom = () => {
                 <div className="progress mt-3">
                   <div role="progressbar"></div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };
