@@ -6,7 +6,7 @@ import { fetchMusic } from "../redux/actions";
 const FetchMusic = ({ artistName }) => {
   const dispatch = useDispatch();
   const { tracks } = useSelector(
-    (state) => state.musicReducer.artistTracks[artistName]
+    (state) => state.musicReducer.artistTracks[artistName] || []
   );
 
   useEffect(() => {
