@@ -1,4 +1,7 @@
 import { combineReducers } from "redux";
+import FetchMusicReducer from "./FetchMusicReducer";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  musicReducer: FetchMusicReducer,
+});
 export default rootReducer;

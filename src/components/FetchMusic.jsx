@@ -1,34 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMusic } from "../redux/actions";
 
 const FetchMusic = ({ artistName }) => {
-  const [musArray, setMusArray] = useState([]);
+  const dispatch = useDispatch();
+  const { tracks } = useSelector(
+    (state) => state.musicReducer.artistTracks[artistName]
+  );
 
-  const fillMusicSection = async () => {
-    try {
-      let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
-          artistName
-      );
-      if (response.ok) {
-        let { data } = await response.json();
-        console.log(data);
-        setMusArray(data);
-      } else {
-        throw new Error("Error in fetching songs");
-      }
-    } catch (err) {
-      console.log("error", err);
-    }
-  };
   useEffect(() => {
-    fillMusicSection();
-  }, []);
+    dispatch(fetchMusic(artistName));
+  }, [artistName, dispatch]);
 
   return (
     <>
-      {musArray?.slice(0, 4).map((track) => (
-        
+      {tracks?.slice(0, 4).map((track) => (
         <Col key={track.id} className="text-center">
           <img
             className="img-fluid"
