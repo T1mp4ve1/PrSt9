@@ -29,18 +29,7 @@ const PlayerCustom = () => {
                 </div>
               </>
             ) : (
-              <>
-                <img
-                  src="{currentTrack.album.cover_small}"
-                  alt="{currentTrack.title}"
-                  className="me-3"
-                  style={{ width: "50px", height: "50px" }}
-                />
-                <div>
-                  <p className="mb-0 fw-bold">track title</p>
-                  <small>artist name</small>
-                </div>
-              </>
+              <></>
             )}
           </Col>
           <Col lg={8}>
