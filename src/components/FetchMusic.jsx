@@ -52,7 +52,7 @@ const FetchMusic = ({ artistName }) => {
               <button
                 onClick={() => handleLike(track.id)}
                 className="btn btn-sm"
-                style={{ color: isLiked ? "red" : "gray" }}
+                style={{ color: isLiked ? "green" : "gray" }}
               >
                 <i className={isLiked ? "bi bi-heart-fill" : "bi bi-heart"}></i>
               </button>

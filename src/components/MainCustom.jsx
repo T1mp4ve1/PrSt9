@@ -44,7 +44,7 @@ const MainCustom = () => {
                         <button
                           onClick={() => dispatch(toggleLikeTrack(track.id))}
                           className="btn btn-sm"
-                          style={{ color: isLiked ? "red" : "gray" }}
+                          style={{ color: isLiked ? "green" : "gray" }}
                         >
                           <i
                             className={
