@@ -1,8 +1,22 @@
 import { Button, Col, Container } from "react-bootstrap";
 import logo from "/assets/logo/logo.png";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { fetchSearch } from "../redux/actions";
 
 const AsideCustom = () => {
+  const dispatch = useDispatch();
+  const [query, setQuery] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      dispatch(fetchSearch(query));
+      setQuery("");
+    }
+  };
+
   return (
     <>
       <aside>
@@ -48,19 +62,26 @@ const AsideCustom = () => {
                       </Link>
                     </li>
                     <li>
-                      <div className="input-group mt-3">
+                      <form
+                        className="input-group mt-3"
+                        onSubmit={handleSearch}
+                      >
                         <input
                           type="text"
                           className="form-control"
                           placeholder="Search"
-                          aria-label="Search"
+                          value={query}
+                          onChange={(e) => setQuery(e.target.value)}
                         />
                         <div className="input-group-append">
-                          <button className="btn btn-outline-secondary btn-sm h-100">
+                          <button
+                            type="submit"
+                            className="btn btn-outline-secondary btn-sm h-100"
+                          >
                             GO
                           </button>
                         </div>
-                      </div>
+                      </form>
                     </li>
                   </ul>
                 </div>
