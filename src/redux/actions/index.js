@@ -1,6 +1,7 @@
 export const FETCH_MUSIC_SUCCESS = "FETCH_MUSIC_SUCCESS";
 export const SELECTED_TRACK = "SELECTED_TRACK";
 export const FETCH_SEARCH = "FETCH_SEARCH";
+export const LIKE_TRACK = "LIKE_TRACK";
 
 export const fetchMusicSuccess = (artistName, tracks) => ({
   type: FETCH_MUSIC_SUCCESS,
@@ -15,6 +16,11 @@ export const selectedTrack = (track) => ({
 export const fetchSearchFunc = (artistName, tracks) => ({
   type: FETCH_SEARCH,
   payload: { artistName, tracks },
+});
+
+export const toggleLikeTrack = (trackId) => ({
+  type: LIKE_TRACK,
+  payload: trackId,
 });
 
 export const fetchMusic = (artistName) => {
